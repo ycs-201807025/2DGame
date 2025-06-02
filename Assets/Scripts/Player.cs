@@ -5,7 +5,18 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed;
+    private float moveSpeed;//플레이어 이동 속도
+
+    [SerializeField]
+    private GameObject weapon;//무기 프리팹
+
+    [SerializeField]
+    private Transform shootTransform;//발사 위치
+
+    [SerializeField]
+    private float shootInterval = 0.05f; // 발사 간격
+
+    private float lastShootTime = 0f; // 마지막 발사 시간
 
     void Update()
     {
@@ -25,5 +36,19 @@ public class Player : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float toX = Mathf.Clamp(mousePos.x, -8.4f, 8.4f); // 플레이어가 화면 밖으로 나가지 않도록 제한
         transform.position = new Vector3(toX, transform.position.y, transform.position.z);
+
+        //메소드 호출
+        Shoot();
+    }
+
+    //무기 발사 메소드
+    void Shoot()
+    {
+        if (Time.time - lastShootTime > shootInterval)
+        {
+            Instantiate(weapon, shootTransform.position, Quaternion.identity);
+            lastShootTime = Time.time; // 마지막 발사 시간 업데이트
+        }
+
     }
 }
