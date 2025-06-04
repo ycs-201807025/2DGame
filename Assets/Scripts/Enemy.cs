@@ -15,10 +15,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float hp = 1f;
 
-    public void SetMoveSpeed(float moveSpeed)
-    {
-        this.moveSpeed = moveSpeed; //Enemy 이동 속도 설정
-    }
+    //public void SetMoveSpeed(float moveSpeed)
+    //{
+    //    this.moveSpeed = moveSpeed; //Enemy 이동 속도 설정
+    //}
     void Update()
     {
         transform.position += Vector3.down * moveSpeed * Time.deltaTime;

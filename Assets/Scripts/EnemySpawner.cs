@@ -80,7 +80,7 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject enmeyObject = Instantiate(enemies[index], spawnPos, Quaternion.identity);
         Enemy enemy = enmeyObject.GetComponent<Enemy>();
-        enemy.SetMoveSpeed(moveSpeed);
+        //enemy.SetMoveSpeed(moveSpeed);
     }
 
     void SpawnBoss()
