@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private Transform shootTransform;//발사 위치
 
     [SerializeField]
-    private float shootInterval = 0.05f; // 발사 간격
+    private float shootInterval = 0.005f; // 발사 간격
 
     private float lastShootTime = 0f; // 마지막 발사 시간
 
