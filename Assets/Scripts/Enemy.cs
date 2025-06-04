@@ -5,6 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
+    private GameObject Coin;
+
+    [SerializeField]
     private float moveSpeed = 10f;
 
     private float minY = -7f;
@@ -34,6 +37,7 @@ public class Enemy : MonoBehaviour
             if (hp <= 0f)
             {
                 Destroy(gameObject); //Enemy 오브젝트 삭제
+                Instantiate(Coin, transform.position,Quaternion.identity);
             }
             Destroy(other.gameObject); //무기 오브젝트 삭제
         }
