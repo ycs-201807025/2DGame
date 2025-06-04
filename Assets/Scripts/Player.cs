@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
         }
         else if (other.gameObject.tag == "Coin")
         {
-            Debug.Log("Coin +1");
+            GameManager.Instance.IncreaseCoin(); // 코인 획득
             Destroy(other.gameObject); // 코인 오브젝트 삭제
         }
     }
