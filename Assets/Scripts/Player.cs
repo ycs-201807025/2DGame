@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss")
         {
             Debug.Log("Game Over");
             Destroy(gameObject);
@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
             GameManager.Instance.IncreaseCoin(); // 코인 획득
             Destroy(other.gameObject); // 코인 오브젝트 삭제
         }
+        
     }
 
     public void Upgrade()
