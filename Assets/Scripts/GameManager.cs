@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI text; // 코인 UI 텍스트
+
+    [SerializeField]
+    private GameObject gameOverPanel; // 게임 오버 패널
 
     private int coin = 0;
 
@@ -47,5 +51,17 @@ public class GameManager : MonoBehaviour
         {
             enemySpawner.StopEnemyRoutine(); // 적 스폰 중지
         }
+
+        Invoke("ShowGameOverPanel", 1f); // 1초 후 게임 오버 패널 표시
+    }
+
+    void ShowGameOverPanel()
+    {
+        gameOverPanel.SetActive(true); // 게임 오버 패널 활성화
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene("SampleScene"); // 게임 씬 재시작
     }
 }
