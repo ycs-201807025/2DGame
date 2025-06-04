@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    private float moveSpeed = 3;
+    private float moveSpeed = 3f;
 
     void Update()
     {
@@ -12,7 +12,7 @@ public class Background : MonoBehaviour
         transform.position += Vector3.down * moveSpeed * Time.deltaTime;
         if (transform.position.y < -10)
         {
-            transform.position += new Vector3(0, 20f, 0);
+            transform.position += new Vector3(0f, 20f, 0f);
         }
     }
 }

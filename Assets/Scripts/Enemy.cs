@@ -7,7 +7,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 10f;
 
-    private float minY = -7;
+    private float minY = -7f;
+
+    [SerializeField]
+    private float hp = 1f;
 
     public void SetMoveSpeed(float moveSpeed)
     {
@@ -19,6 +22,20 @@ public class Enemy : MonoBehaviour
         if (transform.position.y < minY)
         {
             Destroy(gameObject); //Enemy 오브젝트 삭제
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Weapon")
+        {
+            Weapon weapon = other.gameObject.GetComponent<Weapon>();
+            hp -= weapon.damage; //Enemy hp 감소
+            if (hp <= 0f)
+            {
+                Destroy(gameObject); //Enemy 오브젝트 삭제
+            }
+            Destroy(other.gameObject); //무기 오브젝트 삭제
         }
     }
 }
