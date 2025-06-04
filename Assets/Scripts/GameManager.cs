@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     private int coin = 0;
 
+    [HideInInspector]
+    public bool isGameOver = false;
+
     void Awake()
     {
         if (Instance == null)
@@ -32,6 +35,17 @@ public class GameManager : MonoBehaviour
             {
                 player.Upgrade(); // 플레이어 업그레이드 메소드 호출
             }
+        }
+    }
+
+    public void SetGameOver()
+    {
+        isGameOver = true;
+
+        EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
+        if (enemySpawner != null)
+        {
+            enemySpawner.StopEnemyRoutine(); // 적 스폰 중지
         }
     }
 }

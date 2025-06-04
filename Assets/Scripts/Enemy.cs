@@ -36,6 +36,10 @@ public class Enemy : MonoBehaviour
             hp -= weapon.damage; //Enemy hp 감소
             if (hp <= 0f)
             {
+                if (gameObject.tag == "Boss")
+                {
+                    GameManager.Instance.SetGameOver(); //게임 오버 설정
+                }
                 Destroy(gameObject); //Enemy 오브젝트 삭제
                 Instantiate(Coin, transform.position,Quaternion.identity);
             }

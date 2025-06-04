@@ -38,8 +38,12 @@ public class Player : MonoBehaviour
         float toX = Mathf.Clamp(mousePos.x, -8.4f, 8.4f); // 플레이어가 화면 밖으로 나가지 않도록 제한
         transform.position = new Vector3(toX, transform.position.y, transform.position.z);
 
-        //메소드 호출
-        Shoot();
+        if (GameManager.Instance.isGameOver == false)
+        {
+            //메소드 호출
+            Shoot();
+        }
+        
     }
 
     //무기 발사 메소드
@@ -56,7 +60,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss")
         {
-            Debug.Log("Game Over");
+            GameManager.Instance.SetGameOver();
             Destroy(gameObject);
         }
         else if (other.gameObject.tag == "Coin")
