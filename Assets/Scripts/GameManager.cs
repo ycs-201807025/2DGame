@@ -24,5 +24,14 @@ public class GameManager : MonoBehaviour
     {
         coin++;
         text.SetText(coin.ToString());
+
+        if (coin % 30 == 0)
+        {
+            Player player = FindObjectOfType<Player>();
+            if (player != null)
+            {
+                player.Upgrade(); // 플레이어 업그레이드 메소드 호출
+            }
+        }
     }
 }

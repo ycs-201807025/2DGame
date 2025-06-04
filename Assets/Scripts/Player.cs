@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
     private float moveSpeed;//플레이어 이동 속도
 
     [SerializeField]
-    private GameObject weapon;//무기 프리팹
+    private GameObject[] weapons;//무기 프리팹
+    private int weaponIndex = 0; // 현재 무기 인덱스
 
     [SerializeField]
     private Transform shootTransform;//발사 위치
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
     {
         if (Time.time - lastShootTime > shootInterval)
         {
-            Instantiate(weapon, shootTransform.position, Quaternion.identity);
+            Instantiate(weapons[weaponIndex], shootTransform.position, Quaternion.identity); 
             lastShootTime = Time.time; // 마지막 발사 시간 업데이트
         }
 
@@ -62,6 +63,15 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.IncreaseCoin(); // 코인 획득
             Destroy(other.gameObject); // 코인 오브젝트 삭제
+        }
+    }
+
+    public void Upgrade()
+    {
+        weaponIndex++;
+        if (weaponIndex >= weapons.Length)
+        {
+            weaponIndex = weapons.Length - 1; // 무기 인덱스가 범위를 벗어나지 않도록 제한
         }
     }
 }
